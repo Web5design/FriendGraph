@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "FriendGraph": {
+            "applicationId": "xBvu7rfpGgYIITqoZbVnhYUTLGzIitMd3qdrp2wJ", 
+            "masterKey": "gbsZP4wdIpm7fMzE0WmYKQuJVJb9XIL4qZ4ZtwB2"
+        }, 
+        "_default": {
+            "link": "FriendGraph"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.13"
+    }
+}
