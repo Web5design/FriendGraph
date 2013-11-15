@@ -1,9 +1,51 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
 
-<html>
-  <head>
-    <title>My ParseApp site</title>
-  </head>
-  <body>
-    Hello World!
-  </body>
+  <title>My Parse App</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.12.min.js"></script>
+</head>
+
+<body>
+  
+  <div id="main">
+    <h1>Trigger graph call</h1>
+
+    <p><input id="token" placeholder="Access token" /></p>
+    <p><button id="run">Run</button></p>
+    <p id="results"></p>
+    <p id="error"></p>
+  </div>
+
+  <script type="text/javascript">
+    Parse.initialize("xBvu7rfpGgYIITqoZbVnhYUTLGzIitMd3qdrp2wJ", "glDIt8ZaEOKRg4y22dgAOJe2A1s0bJ8QpZz2HAMd");
+
+    $('#results').hide();
+    $('#error').hide();
+
+    $('#run').click(function(){
+
+      $('#results').hide();
+      $('#error').hide();
+      $(this).attr('disabled','disabled').html('Running');
+      
+      Parse.Cloud.run('graph', { token: $('#token').val() }, {
+        success: function(results) {
+          $('#run').removeAttr('disabled').html('Run');
+          $('#results').html(results).show();
+        },
+        error: function(error) {
+          $('#run').removeAttr('disabled').html('Run');
+          $('#error').html(error).show();
+        }
+      });
+    });
+  </script>
+</body>
+
 </html>
